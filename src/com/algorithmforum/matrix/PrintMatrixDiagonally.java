@@ -42,6 +42,7 @@ public class PrintMatrixDiagonally {
 				c++;
 			}
 			System.out.println();
+			
 		}
 	}
 
