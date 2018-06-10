@@ -7,6 +7,21 @@ import java.util.Set;
 import java.util.Stack;
 
 /**
+ * This algorithm is a variant of Depth-first search. In depth first search, we
+ * first print the vertex and then go to its neighbours but in case of
+ * topological sort, we don’t print vertex immediately instead we push it to the
+ * Stack.
+ * 
+ * In topological sorting, we will have a temporary stack. We are not going to
+ * print the vertex immediately, we first recursively call topological sorting
+ * for all its neighbour vertices, then push it to a stack. We will print stack
+ * once we are done with recursive topolgical sorting.
+ * 
+ * Why it works? It works because when you push any node to stack, you have
+ * already pushed its neighbours (and their neighbours and so on),so node which
+ * does not have any dependency will be on the top of stack. In our case, we
+ * will have 40 on top of the stack.
+ * 
  * https://java2blog.com/topological-sort-java/
  * 
  * @author rajesh.dixit
