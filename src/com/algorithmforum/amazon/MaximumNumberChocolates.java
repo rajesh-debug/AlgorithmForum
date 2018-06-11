@@ -1,4 +1,4 @@
-package com.amazon;
+package com.algorithmforum.amazon;
 
 import java.util.HashMap;
 import java.util.Map;

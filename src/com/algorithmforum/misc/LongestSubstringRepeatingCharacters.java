@@ -1,4 +1,4 @@
-package com.misc;
+package com.algorithmforum.misc;
 
 import java.util.HashMap;
 import java.util.Map;

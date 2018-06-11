@@ -3,94 +3,101 @@ package com.algorithmforum.trie;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * https://www.geeksforgeeks.org/longest-prefix-matching-a-trie-based-solution-in-java/
  * 
+ * We build a Trie of all dictionary words. Once the Trie is built, traverse through it using characters of input string.
+ * If prefix matches a dictionary word, store current length and look for a longer match. Finally, return the longest match.
+ * 
  * @author rajesh.dixit
- *
+ * @since Jun 5, 2018 10:01:00 AM
  */
 public class LongestPrefixMatching {
 
-	private static class TrieNode {
-		Map<Character, TrieNode> children;
-		boolean endOfWord;
+    // Trie Node, which stores a character and the children in a HashMap
+    private static class TrieNode {
 
-		public TrieNode() {
-			children = new HashMap<>();
-			endOfWord = false;
-		}
 
-		@Override
-		public String toString() {
-			return "[" + children + "," + endOfWord + "]";
-		}
-	}
+        private char value;
+        private HashMap<Character, TrieNode> children;
+        private boolean isEOW;
 
-	private static TrieNode root;
+        public TrieNode(char ch) {
+            value = ch;
+            children = new HashMap<>();
+            isEOW = false;
+        }
 
-	public LongestPrefixMatching() {
-		root = new TrieNode();
-	}
+    }
 
-	private void insert(String[] words) {
-		for (String word : words) {
-			TrieNode current = root;
-			for (int i = 0; i < word.length(); i++) {
-				char ch = word.charAt(i);
-				TrieNode node = current.children.get(ch);
-				if (node == null) {
-					node = new TrieNode();
-					current.children.put(ch, node);
-				}
-				current = node;
-			}
-			// mark the current nodes endOfWord as true
-			current.endOfWord = true;
-		}
-	}
 
-	private static String longestPrefix(String word) {
-		int idx = 0;
-		boolean found = false;
-		TrieNode current = root;
-		for (int i = 0; i < word.length(); i++) {
-			char ch = word.charAt(i);
-			if (current == null || current.children == null) {
-				break;
-			}
-			current = current.children.get(ch);
-			if (current != null && current.endOfWord) {
-				found = true;
-				idx = i;
-			}
-		}
-		if (found && idx <= word.length()) {
-			return word.substring(0, idx + 1);
-		}
-		return null;
-	}
+    private static final TrieNode root;
+    static {
+        root = new TrieNode((char) 0);
+    }
 
-	public static void main(String[] args) {
-		// initialize Trie
-		LongestPrefixMatching trie = new LongestPrefixMatching();
-		String[] prefixs = { "are", "area", "base", "cat", "cater", "children", "basement" };
-		trie.insert(prefixs);
+    private static String getMatchingPrefix(String input) {
+        StringBuilder prefix = new StringBuilder();
+        TrieNode current = root;
+        for (char ch : input.toCharArray()) {
+            Map<Character, TrieNode> childMap = current.children;
+            if (childMap.containsKey(ch)) {
+                prefix.append(ch);
+                current = childMap.get(ch);
+            } else {
+                break;
+            }
+        }
+        return prefix.toString();
+    }
 
-		// search in Trie
-		String longestPrefix = longestPrefix("catermentss");
+    private static void insert(String string) {
+        TrieNode current = root;
+        for (char ch : string.toCharArray()) {
+            Map<Character, TrieNode> childMap = current.children;
+            if (childMap.containsKey(ch)) {
+                current = childMap.get(ch);
+                continue;
+            }
+            TrieNode trieNode = new TrieNode(ch);
+            childMap.put(ch, trieNode);
+            current = trieNode;
+        }
+        current.isEOW = true;
+    }
 
-		System.out.println("Prefix, catermentss " + longestPrefix);
-		
-		// search in Trie
-		longestPrefix = longestPrefix("banana");
+    public static void main(String[] args) {
 
-		System.out.println("Prefix, banana " + longestPrefix);
-		
-		// search in Trie
-		longestPrefix = longestPrefix("basemexy");
+        insert("are");
+        insert("area");
+        insert("base");
+        insert("cat");
+        insert("cater");
+        insert("basement");
 
-		System.out.println("Prefix, basemexy " + longestPrefix);
-		
-	}
+        String input = "caterer";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
 
+        input = "basement";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
+
+        input = "are";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
+
+        input = "arex";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
+
+        input = "basemexz";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
+
+        input = "xyz";
+        System.out.print(input + ":   ");
+        System.out.println(getMatchingPrefix(input));
+    }
 }

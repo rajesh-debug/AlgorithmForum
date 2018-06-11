@@ -1,4 +1,4 @@
-package com.array;
+package com.algorithmforum.array;
 
 import java.util.Arrays;
 

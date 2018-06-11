@@ -1,137 +1,111 @@
 package com.algorithmforum.trie;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Trie {
 
-	private static class TrieNode {
-		Map<Character, TrieNode> children;
-		boolean endOfWord;
+    private static class TrieNode {
 
-		public TrieNode() {
-			children = new HashMap<>();
-			endOfWord = false;
-		}
+        Map<Character, TrieNode> children;
+        boolean endOfWord;
 
-		@Override
-		public String toString() {
-			return "[" + children + "," + endOfWord + "]";
-		}
-	}
+        public TrieNode() {
+            children = new HashMap<>();
+            endOfWord = false;
+        }
 
-	private static TrieNode root;
+        @Override
+        public String toString() {
+            return "[" + children + "," + endOfWord + "]";
+        }
+    }
 
-	public Trie() {
-		root = new TrieNode();
-	}
+    private static TrieNode root;
 
-	private void insert(String word) {
-		TrieNode current = root;
-		for (int i = 0; i < word.length(); i++) {
-			char ch = word.charAt(i);
-			TrieNode node = current.children.get(ch);
-			if (node == null) {
-				node = new TrieNode();
-				current.children.put(ch, node);
-			}
-			current = node;
-		}
-		// mark the current nodes endOfWord as true
-		current.endOfWord = true;
-	}
+    public Trie() {
+        root = new TrieNode();
+    }
 
-	private static boolean searchWholeWord(String word) {
-		TrieNode current = root;
-		for (int i = 0; i < word.length(); i++) {
-			char ch = word.charAt(i);
-			TrieNode node = current.children.get(ch);
-			if (node == null) {
-				return false;
-			}
-			current = node;
-		}
-		// mark the current nodes endOfWord as true
-		return current.endOfWord;
-	}
+    private void insert(String word) {
+        TrieNode current = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                node = new TrieNode();
+                current.children.put(ch, node);
+            }
+            current = node;
+        }
+        // mark the current nodes endOfWord as true
+        current.endOfWord = true;
+    }
 
-	private static boolean searchPrefix(String word) {
-		TrieNode current = root;
-		for (int i = 0; i < word.length(); i++) {
-			char ch = word.charAt(i);
-			TrieNode node = current.children.get(ch);
-			if (node == null) {
-				return false;
-			}
-			current = node;
-		}
-		// mark the current nodes endOfWord as true
-		return true;
-	}
+    private static boolean searchWholeWord(String word) {
+        TrieNode current = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                return false;
+            }
+            current = node;
+        }
+        // mark the current nodes endOfWord as true
+        return current.endOfWord;
+    }
 
-	/**
-	 * Delete word from trie.
-	 */
-	public static boolean delete(String word) {
-		return delete(root, word, 0);
-	}
+    private static boolean searchPrefix(String word) {
+        TrieNode current = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                return false;
+            }
+            current = node;
+        }
+        // mark the current nodes endOfWord as true
+        return true;
+    }
 
-	private static boolean delete(TrieNode current, String word, int index) {
-		if (index == word.length()) {
-			// when end of word is reached only delete if currrent.endOfWord is true.
-			if (!current.endOfWord) {
-				return false;
-			}
-			current.endOfWord = false;
-			// if current has no other mapping then return true
-			return current.children.size() == 0;
-		}
-		char ch = word.charAt(index);
-		TrieNode node = current.children.get(ch);
-		if (node == null) {
-			return false;
-		}
-		boolean shouldDeleteCurrentNode = delete(node, word, index + 1);
 
-		// if true is returned then delete the mapping of character and trienode
-		// reference from map.
-		if (shouldDeleteCurrentNode) {
-			current.children.remove(ch);
-			// return true if no mappings are left in the map.
-			return current.children.size() == 0;
-		}
-		return false;
-	}
+    private static boolean delete(String string) {
+        TrieNode current = root;
 
-	public static void main(String[] args) {
-		// initialize Trie
-		Trie trie = new Trie();
-		trie.insert("abc");
-		trie.insert("pqr");
-		trie.insert("abcd");
+        return false;
+    }
 
-		// search in Trie
-		boolean isFound = searchWholeWord("pqr");
-		System.out.println("Search whole word, pqr " + isFound);
+    public static void main(String[] args) {
+        // initialize Trie
+        Trie trie = new Trie();
+        trie.insert("abc");
+        trie.insert("pqr");
+        trie.insert("abcd");
 
-		// search in Trie
-		isFound = searchWholeWord("pq");
-		System.out.println("Search whole word, pq " + isFound);
+        // search in Trie
+        boolean isFound = searchWholeWord("pqr");
+        System.out.println("Search whole word, pqr " + isFound);
 
-		// search in Trie
-		isFound = searchPrefix("ab");
+        // search in Trie
+        isFound = searchWholeWord("pq");
+        System.out.println("Search whole word, pq " + isFound);
 
-		System.out.println("Search prefix, ab " + isFound);
+        // search in Trie
+        isFound = searchPrefix("ab");
 
-		// search in Trie
-		isFound = searchPrefix("pqrs");
+        System.out.println("Search prefix, ab " + isFound);
 
-		System.out.println("Search prefix, pqrs " + isFound);
+        // search in Trie
+        isFound = searchPrefix("pqrs");
 
-		// search in Trie
-		boolean isDeleted = delete("pqr");
+        System.out.println("Search prefix, pqrs " + isFound);
 
-		System.out.println("Deleted prefix, pqr " + isDeleted);
-	}
+        // delete in Trie
+        boolean isDeleted = delete("pqrs");
 
+        System.out.println("Deleted, pqrs " + isFound);
+    }
 }
