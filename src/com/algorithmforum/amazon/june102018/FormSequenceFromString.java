@@ -1,4 +1,4 @@
-package com.amazon.june_10_2018;
+package com.algorithmforum.amazon.june102018;
 
 import java.util.Stack;
 
