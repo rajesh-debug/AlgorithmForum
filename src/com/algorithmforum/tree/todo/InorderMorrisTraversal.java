@@ -16,12 +16,15 @@ package com.algorithmforum.tree.todo;
  * 		Else
  * 			a) Make current as right child of the rightmost node in current's left subtree
  * 			b) Go to this left child, i.e., current = current->left
+ * 
  * https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+ * 
+ * https://www.youtube.com/watch?v=wGXB9OWhPTg
  * 
  * @author rajesh.dixit
  *
  */
-public class MorrisTraversal {
+public class InorderMorrisTraversal {
 
 	private static class Node {
 		int data;
@@ -70,5 +73,4 @@ public class MorrisTraversal {
 		root.left.right = new Node(11);
 		inorder(root);
 	}
-
 }
