@@ -1,9 +1,7 @@
 package com.algorithmforum.matrix;
 
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.StringJoiner;
 
 public class TestClass {
 	private static int ROW;
