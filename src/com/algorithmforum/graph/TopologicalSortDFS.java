@@ -83,7 +83,7 @@ public class TopologicalSortDFS {
 			}
 		}
 
-		System.out.println("Following is a Topological " + "sort of the given graph");
+		System.out.println("Following is a Topological sort of the given graph");
 
 		while (!stack.isEmpty()) {
 			System.out.print(stack.pop() + " ");
