@@ -2,8 +2,6 @@ package com.algorithmforum.graph;
 
 import java.util.Arrays;
 
-import com.algorithmforum.graph.GraphEdge.Edge;
-
 /**
  * An application of disjoint-set data structures.
  * 
