@@ -1,7 +1,7 @@
 package com.algorithmforum.tree;
 
 
-public class CreatePostOrder {
+public class CreatePostOrderRecusion {
 
     private static int preIdx = 0;
 
