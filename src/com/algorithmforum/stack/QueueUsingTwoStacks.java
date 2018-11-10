@@ -1,4 +1,4 @@
-package com.algorithmforum.cci.stack;
+package com.algorithmforum.stack;
 
 import java.util.Stack;
 
