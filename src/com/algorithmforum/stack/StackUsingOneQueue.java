@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 
  * Design a stack using single Queue.
  * 
  * https://www.geeksforgeeks.org/implement-a-stack-using-single-queue/
