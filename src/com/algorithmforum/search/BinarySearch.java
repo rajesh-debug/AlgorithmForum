@@ -21,9 +21,7 @@ public class BinarySearch {
 			int index = binarySearch(array, val);
 
 			System.out.println("Index of value " + index);
-
 		}
-
 	}
 
 	/**
