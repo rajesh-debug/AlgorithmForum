@@ -11,42 +11,41 @@ import java.util.LinkedList;
  */
 public class SlidingWindowMaximum {
 
-    private static void printMax(int arr[], int k) {
+	private static void printMax(int arr[], int k) {
+		Deque<Integer> deque = new LinkedList<>();
 
-        Deque<Integer> dQeue = new LinkedList<Integer>();
-        int i = 0;
+		/** Store maximum element of Window in the Queue. */
+		for (int i = 0; i < k; i++) {
+			while (!deque.isEmpty() && arr[deque.getLast()] < arr[i]) {
+				deque.removeLast();
+			}
+			deque.addLast(i);
+		}
 
-        /** Fill element for k size window. */
-        for (i = 0; i < k; i++) {
-            while (!dQeue.isEmpty() && arr[i] > arr[dQeue.peek()]) {
-                dQeue.removeFirst();
-            }
-            dQeue.addFirst(i);
-        }
+		for (int i = k; i < arr.length; i++) {
+			/* printing the element of the window. */
+			System.out.println(arr[deque.getFirst()]);
 
-        for (; i < arr.length; i++) {
-            System.out.printf("%d ", arr[dQeue.peek()]);
+			while (k <= i - deque.getFirst()) {
+				deque.removeFirst();
+			}
 
-            if (!dQeue.isEmpty() && i - k >= dQeue.peek()) {
-                dQeue.removeFirst();
-            }
+			while (!deque.isEmpty() && arr[deque.getLast()] <= arr[i]) {
+				deque.removeLast();
+			}
 
-            while (!dQeue.isEmpty() && arr[i] > arr[dQeue.peekLast()]) {
-                dQeue.removeLast();
-            }
-            dQeue.addLast(i);
-        }
+			deque.addLast(i);
+		}
 
-        /* Maximum element of last window. */
-        System.out.printf("%d ", arr[dQeue.peek()]);
-    }
+		System.out.println(arr[deque.peek()]);
+	}
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        int arr[] = { 12, 1, 78, 90, 57, 89, 56 };
-        int k = 3;
-        printMax(arr, k);
-    }
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		int arr[] = { 12, 1, 78, 90, 57, 89, 56 };
+		int k = 3;
+		printMax(arr, k);
+	}
 }
