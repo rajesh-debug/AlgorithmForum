@@ -1,7 +1,6 @@
 package com.algorithmforum.stack;
 
 import java.util.Stack;
-import java.util.concurrent.ExecutionException;
 
 /**
  * 
@@ -65,12 +64,18 @@ public class StackGetMin {
 			return stack.push(Integer.valueOf(val));
 		}
 
+		/**
+		 * Return the minimum value from the stack.
+		 * 
+		 * @return minimum value.
+		 */
 		public Integer getMin() {
-			int item = stack.peek();
-			if (minItem.compareTo(item) < 0) {
-				item = 2 * minItem - item;
-			}
-			return item;
+			/*
+			 * int item = stack.peek(); if (minItem.compareTo(item) < 0) { item = 2 *
+			 * minItem - item; } return item;
+			 */
+
+			return minItem;
 		}
 
 		public boolean isEmpty() {
@@ -85,7 +90,7 @@ public class StackGetMin {
 
 	public static void main(String[] args) {
 
-		MyStack myStack = new MyStack(4);
+		MyStack myStack = new MyStack(6);
 		myStack.push(3);
 		myStack.push(5);
 		myStack.push(2);
@@ -94,10 +99,10 @@ public class StackGetMin {
 		myStack.push(-1);
 
 		System.out.println("Size of the stack " + myStack.size());
+		System.out.println("Min element in the stack " + myStack.getMin());
 		while (!myStack.isEmpty()) {
-			int item = myStack.getMin();
-			myStack.pop();
-			System.out.print(" " + item);
+			System.out.println(" Min element after pop the top " + myStack.getMin());
+			System.out.println(" Top element " + myStack.pop());
 		}
 	}
 }
