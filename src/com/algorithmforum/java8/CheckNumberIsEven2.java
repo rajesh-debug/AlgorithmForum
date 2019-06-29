@@ -1,4 +1,4 @@
-package com.algorithmforum.java8.lambda;
+package com.algorithmforum.java8;
 
 /**
  * This is the functional interface with unimplemented method to check number is
@@ -14,7 +14,7 @@ interface Arithmatic {
 /**
  * This is test class to check number is even
  */
-public class CheckNumberIsEven {
+public class CheckNumberIsEven2 {
 
 	public static void main(String[] args) {
 

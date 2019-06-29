@@ -1,4 +1,4 @@
-package com.algorithmforum.java8.lambda;
+package com.algorithmforum.java8;
 
 /**
  * This is the functional interface with unimplemented method to check number is
@@ -8,7 +8,6 @@ package com.algorithmforum.java8.lambda;
  */
 interface ArithmaticOper {
 	int operation(int num1, int num2);
-
 }
 
 /**
