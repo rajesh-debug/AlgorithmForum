@@ -1,4 +1,4 @@
-package com.algorithmforum.amazon.june102018;
+package com.algorithmforum.amazon;
 
 import java.util.ArrayList;
 import java.util.HashSet;
