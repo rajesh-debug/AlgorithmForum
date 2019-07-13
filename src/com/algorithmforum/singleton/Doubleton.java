@@ -1,4 +1,4 @@
-package com.designpatterns.singleton;
+package com.algorithmforum.singleton;
 
 public class Doubleton {
 

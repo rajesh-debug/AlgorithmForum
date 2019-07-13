@@ -1,4 +1,4 @@
-package com.designpatterns.singleton;
+package com.algorithmforum.singleton;
 
 //Java code to explain effect of Serilization on singleton classes 
 import java.io.FileInputStream;
