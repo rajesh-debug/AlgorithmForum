@@ -1,4 +1,4 @@
-package com.algorithforum.serialization;
+package com.algorithmforum.serialization;
 
 import java.io.ObjectStreamClass;
 import java.io.Serializable;

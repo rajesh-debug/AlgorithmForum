@@ -1,4 +1,4 @@
-package com.algorithforum.oops;
+package com.algorithmforum.oops;
 
 /**
  * To check which method will call while calling with null.

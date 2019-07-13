@@ -1,4 +1,4 @@
-package com.algorithforum.dividenconquer;
+package com.algorithmforum.dividenconquer;
 
 public class CalculatePowXN {
 
