@@ -1,4 +1,4 @@
-package com.algorithmforum.flipkart.set48;
+package com.algorithmforum.flipkart;
 
 import java.util.LinkedList;
 import java.util.Queue;
